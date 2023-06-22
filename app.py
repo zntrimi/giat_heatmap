@@ -10,16 +10,16 @@ data = pd.read_csv('steps.csv')
 
 
 if st.checkbox('生データを表示'):  
-    st.table(data)
+    st.dataframe(data, 600, 300)
 
 # Sliderの値を取得 (1000ずつの範囲で指定)
 
 time_range = st.slider(
     'Select a range of time values',
-    min_value=1,
+    min_value=4430,
     max_value=12448,
-    value=(1, 1000),
-    step=1000
+    value=(4430, 9380),
+    step=500
 )
 
 # Sliderで指定された時間範囲のデータをフィルタリング
@@ -31,7 +31,8 @@ grouped_data = filtered_data.groupby(['x', 'y']).agg({'force': 'sum'}).reset_ind
 # x, y, forceを使用してヒートマップデータを作成
 max_x = int(max(grouped_data['x']))+10
 max_y = int(max(grouped_data['y']))+10
-heatmap_data = np.zeros((max_x + 1, max_y + 1))
+#heatmap_data = np.zeros((350, 35))
+heatmap_data = np.zeros((max_x, max_y))
 for index, row in grouped_data.iterrows():
     heatmap_data[int(row['x']), int(row['y'])] = row['force']
 
@@ -39,4 +40,6 @@ for index, row in grouped_data.iterrows():
 fig = px.imshow(heatmap_data, labels=dict(x="X Coordinate", y="Y Coordinate", color="Force"),
                 title="Walking Data Heatmap")
 
+# ヒートマップをStreamlitで表示
 st.plotly_chart(fig, use_container_width=True)
+
