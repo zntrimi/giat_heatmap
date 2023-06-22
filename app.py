@@ -40,6 +40,9 @@ for index, row in grouped_data.iterrows():
 fig = px.imshow(heatmap_data, labels=dict(x="X Coordinate", y="Y Coordinate", color="Force"),
                 title="Walking Data Heatmap")
 
+fig.update_xaxes(range=[0, 34])  # 0 to 34 for y-axis (total 35)
+fig.update_yaxes(range=[0, 349])  # 0 to 349 for x-axis (total 350)
+
 # ヒートマップをStreamlitで表示
 st.plotly_chart(fig, use_container_width=True)
 
