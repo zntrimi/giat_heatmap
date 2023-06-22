@@ -1,4 +1,3 @@
-# 必要なライブラリをインポート
 import streamlit as st
 import plotly.express as px
 import pandas as pd
@@ -36,9 +35,8 @@ heatmap_data = np.zeros((max_x + 1, max_y + 1))
 for index, row in grouped_data.iterrows():
     heatmap_data[int(row['x']), int(row['y'])] = row['force']
 
-# ヒートマップを作成
+
 fig = px.imshow(heatmap_data, labels=dict(x="X Coordinate", y="Y Coordinate", color="Force"),
                 title="Walking Data Heatmap")
 
-# ヒートマップをStreamlitで表示
 st.plotly_chart(fig, use_container_width=True)
