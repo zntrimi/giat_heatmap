@@ -6,4 +6,5 @@ https://giatheatmap.streamlit.app/
 To deploy your own, 
 
 `$pip install -r requirements.txt
-$streamlit run app.py`
+`
+`$streamlit run app.py`
