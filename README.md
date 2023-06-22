@@ -7,4 +7,5 @@ To deploy your own,
 
 `$pip install -r requirements.txt
 `
+
 `$streamlit run app.py`
